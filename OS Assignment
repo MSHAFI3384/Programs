@@ -1,0 +1,54 @@
+CT,TAT,WT=[],[],[]
+ATBT=[]
+n=int(input("How many processes do you have to enter\n"))
+print("\nSTART YOUR ARRIVAL TIME AT 1(Since Burst time is double the arrival time)\n")
+for i in range(n):
+    z=int(input("Enter arrival time\n"))
+    l=[]
+    l.append(z*2)
+    l.append(z)
+    ATBT.append(l)
+ATBT.sort(reverse=1)
+ct=1
+t,w=0,0
+for i in range(len(ATBT)):
+    ct+=ATBT[i][0]
+    CT.append(ct)
+    tat=ct-ATBT[i][1]
+    TAT.append(tat)
+    wt=CT[i-1]-ATBT[i][1]
+    
+    WT.append(wt)
+    t+=tat
+    w+=wt
+    print(w)
+WT[0]=0
+w-=CT[0]-ATBT[0][1]
+print("\nAvg TURN AROUND TIME in Largest Burst Time Scheduling=",t/len(ATBT))
+print("\nAvg WAITING TIME in Largest Burst Time Scheduling=",w/len(ATBT))
+CT.clear()
+TAT.clear()
+WT.clear()
+ATBT.sort()
+ct=1
+t,w=0,0
+for i in ATBT:
+    if ct>=i[1]:
+        ct+=i[0]
+        CT.append(ct)
+        tat=ct-i[1]
+        TAT.append(tat)
+        wt=tat-i[1]
+        WT.append(wt)
+        w+=wt
+    else:
+        z=i[1]-ct
+        ct+=z
+        ct+=i[0]
+        CT.append(ct)
+        tat=ct-i[1]
+        TAT.append(tat)
+        wt=tat-i[0]
+        WT.append(wt)
+        w+=wt
+print("\nAvg WAITING TIME in Shortest Job first Scheduling=",w/len(ATBT))
