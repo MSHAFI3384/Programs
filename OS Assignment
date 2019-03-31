@@ -17,11 +17,9 @@ for i in range(len(ATBT)):
     tat=ct-ATBT[i][1]
     TAT.append(tat)
     wt=CT[i-1]-ATBT[i][1]
-    
     WT.append(wt)
     t+=tat
     w+=wt
-    print(w)
 WT[0]=0
 w-=CT[0]-ATBT[0][1]
 print("\nAvg TURN AROUND TIME in Largest Burst Time Scheduling=",t/len(ATBT))
